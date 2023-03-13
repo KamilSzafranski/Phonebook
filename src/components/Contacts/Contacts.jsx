@@ -2,8 +2,11 @@ import React from "react";
 
 import { useDispatch } from "react-redux";
 import { addFilterAction } from "redux/filters/filters.slice";
-import { Box, Heading, Text, Input } from "@chakra-ui/react";
+import { Box, Heading, Text, Input, Button } from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
 import { ContactsList } from "components/ContactsList/ContactsList";
+import { ModalStatus } from "redux/constant";
+import { openModalAction } from "redux/phoneBook/phoneBook.slice";
 
 export const Contacts = props => {
   const dispatch = useDispatch();
@@ -14,9 +17,30 @@ export const Contacts = props => {
     } = event;
     dispatch(addFilterAction(value));
   };
+  const handleModalAdd = () => {
+    dispatch(openModalAction(ModalStatus.ADD_CONTACT));
+  };
 
   return (
-    <Box boxShadow="base" p="10px" rounded="md">
+    <Box
+      maxW="80%"
+      m="0 auto"
+      p="10px"
+      boxShadow="base"
+      rounded="md"
+      position="relative"
+    >
+      <Button
+        colorScheme="teal"
+        size="lg"
+        rightIcon={<AddIcon />}
+        pos="absolute"
+        top="20px"
+        right="20px"
+        onClick={handleModalAdd}
+      >
+        Add Contact
+      </Button>
       <Heading as="h2" mb="5px">
         PhoneBook
       </Heading>

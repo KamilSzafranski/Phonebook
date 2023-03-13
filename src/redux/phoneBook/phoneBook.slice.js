@@ -11,7 +11,6 @@ const phoneBookInitialState = {
 
 const handlePending = (state, action) => {
   state.isLoading = true;
-  console.log(state.isLoading);
   state.error = null;
 };
 
