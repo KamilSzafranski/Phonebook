@@ -7,6 +7,7 @@ import {
   setIdToDeleteAction,
 } from "redux/phoneBook/phoneBook.slice";
 import { ModalStatus } from "redux/constant";
+import { listItemStyle } from "./ContactsItem.chakraui";
 
 export const ContactsItem = ({ name, number, id, email }) => {
   const dispatch = useDispatch();
@@ -18,20 +19,12 @@ export const ContactsItem = ({ name, number, id, email }) => {
 
   return (
     <>
-      <ListItem
-        display="grid"
-        h="50px"
-        gridTemplateColumns="repeat(3, 1fr)"
-        justifyItems="start"
-        alignItems="center"
-        cursor="pointer"
-        onClick={handleDelete}
-      >
+      <ListItem sx={listItemStyle} onClick={handleDelete}>
         <Text>{name}:</Text>
         <Text> {number}</Text>
         <Text> {email}</Text>
       </ListItem>
-      <Divider mb="10px" borderColor="#38B2AC" />
+      <Divider mb="10px" borderColor="teal.400" />
     </>
   );
 };

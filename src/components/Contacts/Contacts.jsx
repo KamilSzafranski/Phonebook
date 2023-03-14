@@ -7,6 +7,11 @@ import { AddIcon } from "@chakra-ui/icons";
 import { ContactsList } from "components/ContactsList/ContactsList";
 import { ModalStatus } from "redux/constant";
 import { openModalAction } from "redux/phoneBook/phoneBook.slice";
+import {
+  boxStyle,
+  buttonAddContactStyle,
+  filterInputStyle,
+} from "./Contact.chakraui";
 
 export const Contacts = props => {
   const dispatch = useDispatch();
@@ -22,22 +27,12 @@ export const Contacts = props => {
   };
 
   return (
-    <Box
-      maxW="80%"
-      m="0 auto"
-      p="10px"
-      boxShadow="base"
-      rounded="md"
-      position="relative"
-    >
+    <Box sx={boxStyle}>
       <Button
         colorScheme="teal"
-        size="lg"
-        rightIcon={<AddIcon />}
-        pos="absolute"
-        top="20px"
-        right="20px"
         onClick={handleModalAdd}
+        sx={buttonAddContactStyle}
+        rightIcon={<AddIcon />}
       >
         Add Contact
       </Button>
@@ -48,12 +43,9 @@ export const Contacts = props => {
         Find contacts by name
       </Text>
       <Input
-        focusBorderColor="#38B2AC"
-        type="text"
-        name="filter"
+        sx={filterInputStyle}
         onChange={handleInput}
-        size="md"
-        width="250px"
+        focusBorderColor="teal.400"
       />
 
       <ContactsList />

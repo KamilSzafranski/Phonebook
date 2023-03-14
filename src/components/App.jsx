@@ -10,6 +10,8 @@ import { ModalStatus } from "redux/constant";
 import { openModalAction } from "redux/phoneBook/phoneBook.slice";
 import { DeleteAlert } from "./DeleteAlert/DeleteAlert";
 import { Layout } from "./Layout/Layout";
+import { Route, Routes } from "react-router-dom";
+import { Home } from "./Home/Home";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -27,11 +29,16 @@ export const App = () => {
 
   return (
     <>
-      <Layout />
-      <Contacts />
       <DeleteAlert />
       <ErrorAlert />
       <AddContactModal />
+
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="contacts" element={<Contacts />} />
+        </Route>
+      </Routes>
     </>
   );
 };

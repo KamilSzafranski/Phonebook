@@ -1,18 +1,11 @@
 import React from "react";
 import { Box, Avatar } from "@chakra-ui/react";
 import { PhoneIcon, EmailIcon } from "@chakra-ui/icons";
+import { gridBoxStyle } from "./ContactsListTitle.chakraui";
 
 export const ContactsListTitle = props => {
   return (
-    <Box
-      display="grid"
-      h="50px"
-      gridTemplateColumns="repeat(3, 1fr)"
-      justifyItems="start"
-      alignItems="center"
-      position="sticky"
-      top="10px"
-    >
+    <Box sx={gridBoxStyle}>
       <Avatar src="https://bit.ly/broken-link" size="xs" />
       <PhoneIcon />
       <EmailIcon />

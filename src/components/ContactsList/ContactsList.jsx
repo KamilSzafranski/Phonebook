@@ -4,6 +4,7 @@ import { selectFileredContacts, selectisLoding } from "redux/selector";
 import { Center, List, Spinner } from "@chakra-ui/react";
 import { ContactsItem } from "components/ContactsItem/ContacsItem";
 import { ContactsListTitle } from "components/ContactsListTitle/ContactsListTitle";
+import { listStyle, spinnerStyle } from "./ContactsList.chakraui";
 
 export const ContactsList = props => {
   const contacts = useSelector(selectFileredContacts);
@@ -12,43 +13,13 @@ export const ContactsList = props => {
     <>
       {isLoading && (
         <Center pt="50px">
-          <Spinner
-            color="#2C7A7B"
-            w="250px"
-            h="250px"
-            thickness="10px"
-            speed="1s"
-            emptyColor="gray.200"
-          />
+          <Spinner sx={spinnerStyle} thickness="10px" speed="1s" />
         </Center>
       )}
       {!isLoading && (
         <>
           <ContactsListTitle />
-          <List
-            overflowY="scroll"
-            maxH="60vh"
-            pr="10px"
-            sx={{
-              " ::-webkit-scrollbar": {
-                width: "5px",
-                position: "absolute",
-              },
-
-              "::-webkit-scrollbar-track": {
-                backgroundColor: " #ffffff",
-              },
-
-              "::-webkit-scrollbar-thumb": {
-                background: "#20caa8",
-                borderRadius: "3px",
-              },
-
-              "::-webkit-scrollbar-thumb:hover": {
-                background: "#2C7A7B",
-              },
-            }}
-          >
+          <List sx={listStyle}>
             {contacts.map(element => {
               return (
                 <ContactsItem
