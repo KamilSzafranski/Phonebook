@@ -29,12 +29,12 @@ export const Layout = () => {
               <Icon as={HomeIcon} boxSize={6} sx={iconStyle} />
             </NavLink>
 
-            <NavLink to="/contacts">
+            <NavLink to="/contacts" onClick={e => e.preventDefault()}>
               <Tooltip
                 hasArrow
                 arrowSize={15}
                 label="Contacts list is avaible to login users!"
-                bg="teal"
+                bg="teal.800"
                 mt="10px"
               >
                 <Icon as={PhoneIcon} boxSize={6} sx={loggedOutIconStyle} />
@@ -45,7 +45,7 @@ export const Layout = () => {
                 hasArrow
                 arrowSize={15}
                 label="Settings list is avaible to login users!"
-                bg="teal"
+                bg="teal.800"
                 mt="10px"
               >
                 <Icon as={SettingsIcon} boxSize={6} sx={loggedOutIconStyle} />
