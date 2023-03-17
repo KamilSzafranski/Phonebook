@@ -4,14 +4,12 @@ import {
   Box,
   Input,
   Button,
-  Checkbox,
   Image,
-  Text,
   Heading,
 } from "@chakra-ui/react";
 
 import phonnebook from "../../image/phonebook.jpg";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerThunk } from "redux/auth/auth.thunk";
 import { selectIsLogin } from "redux/selector";
@@ -26,7 +24,7 @@ export const Register = () => {
 
   useEffect(() => {
     if (isLogin) navigate("/contacts");
-  }, [isLogin]);
+  }, [isLogin, navigate]);
 
   const handleRegister = event => {
     event.preventDefault();
