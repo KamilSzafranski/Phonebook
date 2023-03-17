@@ -47,3 +47,21 @@ export const logoutThunk = createAsyncThunk(
     }
   }
 );
+export const refreshThunk = createAsyncThunk(
+  "auth/refres",
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+
+      if (!token) return thunkAPI.rejectWithValue("No remember");
+
+      setHeaderToken(token);
+
+      const respone = await axios.get("/users/current");
+      console.log(respone.data);
+      return respone.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLogin, selectUser } from "redux/selector";
 import { logoutThunk } from "redux/auth/auth.thunk";
+import { persistor } from "redux/store";
 
 export const Layout = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ export const Layout = () => {
   const user = useSelector(selectUser);
   const handleLogout = event => {
     event.preventDefault();
+    persistor.pause();
+    persistor.purge();
     dispatch(logoutThunk());
   };
 

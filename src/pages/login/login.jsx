@@ -27,18 +27,23 @@ export const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    persistor.persist();
     if (isLogin) navigate("/contacts");
   }, [isLogin]);
 
   const handleLogin = event => {
     event.preventDefault();
 
-    const { email, password } = event.currentTarget;
+    const { email, password, remember } = event.currentTarget;
     const user = {
       email: email.value,
       password: password.value,
     };
+    remember.checked && persistor.persist();
+
+    if (!remember.checked) {
+      persistor.pause();
+      persistor.purge();
+    }
 
     dispatch(loginThunk(user));
   };
@@ -82,7 +87,9 @@ export const Login = () => {
           justifyContent="space-between"
           alignItems="flex-end"
         >
-          <Checkbox colorScheme="teal">Rememver me</Checkbox>
+          <Checkbox colorScheme="teal" name="remember">
+            Rememver me
+          </Checkbox>
           <NavLink to="/register">
             <Text
               fontSize="xs"

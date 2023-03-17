@@ -16,6 +16,7 @@ import { Login } from "pages/login/login";
 import { Register } from "pages/register/register";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 import { persistor } from "redux/store";
+import { refreshThunk } from "redux/auth/auth.thunk";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -23,9 +24,7 @@ export const App = () => {
   const isLogin = useSelector(selectisLoding);
 
   useEffect(() => {
-    persistor.pause();
-    persistor.purge();
-
+    dispatch(refreshThunk());
     dispatch(fetchContacts());
   }, [dispatch]);
 

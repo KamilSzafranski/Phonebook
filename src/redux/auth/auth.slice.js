@@ -1,11 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginThunk, logoutThunk, registerThunk } from "./auth.thunk";
+import {
+  loginThunk,
+  logoutThunk,
+  refreshThunk,
+  registerThunk,
+} from "./auth.thunk";
 
 const authInitialState = {
   token: null,
   isLogin: null,
   user: {},
-  isRefreshing: null,
   error: null,
   isPending: false,
 };
@@ -38,12 +42,19 @@ export const authSlice = createSlice({
         state.token = null;
         state.isLogin = null;
       })
+      .addCase(refreshThunk.fulfilled, (state, action) => {
+        state.isPending = false;
+        state.user = action.payload;
+        state.isLogin = true;
+      })
+
       .addMatcher(isPendingAction, (state, action) => {
         state.isPending = true;
       })
       .addMatcher(isRejectedAction, (state, action) => {
+        if (!action.payload === "No remember") state.error = action.payload;
+
         state.isPending = false;
-        state.error = action.payload;
       });
   },
 });
