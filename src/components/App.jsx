@@ -12,6 +12,8 @@ import { DeleteAlert } from "./DeleteAlert/DeleteAlert";
 import { Layout } from "./Layout/Layout";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./Home/Home";
+import { Login } from "pages/login/login";
+import { Register } from "pages/register/register";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +40,8 @@ export const App = () => {
           <Route index element={<Home />} />
           <Route path="contacts" element={<Contacts />} />
         </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   );

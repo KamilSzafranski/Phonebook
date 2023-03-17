@@ -1,4 +1,4 @@
-import { Flex, Text, Icon, Button, Tooltip } from "@chakra-ui/react";
+import { Flex, Text, Icon, Button, Tooltip, Box } from "@chakra-ui/react";
 import { NavLink, Outlet } from "react-router-dom";
 import { ExternalLinkIcon, PhoneIcon, SettingsIcon } from "@chakra-ui/icons";
 import { HomeIcon } from "image/icon/home";
@@ -8,10 +8,19 @@ import {
   logoStyle,
   menuBoxStyle,
   loggedOutIconStyle,
-  tooltipStyle,
 } from "./Layout.chakraui";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsLogin, selectUser } from "redux/selector";
+import { logoutThunk } from "redux/auth/auth.thunk";
 
 export const Layout = () => {
+  const dispatch = useDispatch();
+  const isLogin = useSelector(selectIsLogin);
+  const user = useSelector(selectUser);
+  const handleLogout = event => {
+    event.preventDefault();
+    dispatch(logoutThunk());
+  };
   return (
     <>
       <header>
@@ -29,7 +38,7 @@ export const Layout = () => {
               <Icon as={HomeIcon} boxSize={6} sx={iconStyle} />
             </NavLink>
 
-            <NavLink to="/contacts" onClick={e => e.preventDefault()}>
+            <NavLink to="/contacts">
               <Tooltip
                 hasArrow
                 arrowSize={15}
@@ -37,25 +46,40 @@ export const Layout = () => {
                 bg="teal.800"
                 mt="10px"
               >
-                <Icon as={PhoneIcon} boxSize={6} sx={loggedOutIconStyle} />
+                <Icon
+                  as={PhoneIcon}
+                  boxSize={6}
+                  sx={isLogin === true ? iconStyle : loggedOutIconStyle}
+                />
               </Tooltip>
             </NavLink>
-            <NavLink to="/settings">
-              <Tooltip
-                hasArrow
-                arrowSize={15}
-                label="Settings list is avaible to login users!"
-                bg="teal.800"
-                mt="10px"
-              >
-                <Icon as={SettingsIcon} boxSize={6} sx={loggedOutIconStyle} />
-              </Tooltip>
-            </NavLink>
-            <NavLink to="/login">
-              <Button colorScheme="teal" rightIcon={<ExternalLinkIcon />}>
-                Log in
-              </Button>
-            </NavLink>
+            {!isLogin && (
+              <NavLink to="/login">
+                <Button colorScheme="teal" rightIcon={<ExternalLinkIcon />}>
+                  Log in
+                </Button>
+              </NavLink>
+            )}
+            {isLogin && (
+              <Box display="flex" alignItems="center" gap="10px">
+                <Text>{user?.email}</Text>
+                <Tooltip
+                  hasArrow
+                  arrowSize={15}
+                  label="Log out!"
+                  bg="teal.800"
+                  mt="10px"
+                >
+                  <Icon
+                    as={ExternalLinkIcon}
+                    _hover={{
+                      color: "teal.400",
+                    }}
+                    onClick={handleLogout}
+                  />
+                </Tooltip>
+              </Box>
+            )}
           </Flex>
         </Flex>
       </header>

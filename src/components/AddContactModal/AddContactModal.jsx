@@ -38,13 +38,12 @@ export const AddContactModal = props => {
     const {
       name: { value: text },
       number: { value: num },
-      email: { value: mail },
     } = event.currentTarget.elements;
 
     const nameTaken = contact.some(elements => elements.name === text);
     const numberTaken = contact.some(elements => elements.phone === num);
-    const emailTaken = contact.some(elements => elements.email === mail);
-    if (nameTaken && numberTaken && emailTaken) {
+
+    if (nameTaken && numberTaken) {
       return toast({
         title: "Warning",
         description: ` Contact ${text} is alredy in Phonebook`,
@@ -53,7 +52,7 @@ export const AddContactModal = props => {
         isClosable: true,
       });
     }
-    dispatch(addContacts({ text, num, mail }));
+    dispatch(addContacts({ text, num }));
   };
 
   return (
@@ -72,8 +71,6 @@ export const AddContactModal = props => {
               <Input sx={nameInputStyle} ref={initialRef} />
               <FormLabel htmlFor="number">Phone</FormLabel>
               <Input sx={phoneInputStyle} />
-              <FormLabel htmlFor="email">Email address</FormLabel>
-              <Input sx={emailInputStyle} />
             </FormControl>
           </form>
         </ModalBody>

@@ -8,7 +8,6 @@ export const ContactsListTitle = props => {
     <Box sx={gridBoxStyle}>
       <Avatar src="https://bit.ly/broken-link" size="xs" />
       <PhoneIcon />
-      <EmailIcon />
     </Box>
   );
 };

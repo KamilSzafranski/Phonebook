@@ -22,7 +22,6 @@ export const ContactsItem = ({ name, number, id, email }) => {
       <ListItem sx={listItemStyle} onClick={handleDelete}>
         <Text>{name}:</Text>
         <Text> {number}</Text>
-        <Text> {email}</Text>
       </ListItem>
       <Divider mb="10px" borderColor="teal.400" />
     </>

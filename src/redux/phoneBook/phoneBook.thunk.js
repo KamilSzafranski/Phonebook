@@ -39,12 +39,11 @@ export const deleteContacts = createAsyncThunk(
 
 export const addContacts = createAsyncThunk(
   "phoneBook/addContacts",
-  async ({ text: name, num: phone, mail: email }, thunkAPI) => {
+  async ({ text: name, num: phone }, thunkAPI) => {
     try {
       const contactToAdd = {
         name,
         phone,
-        email,
       };
       const options = {
         method: "POST",

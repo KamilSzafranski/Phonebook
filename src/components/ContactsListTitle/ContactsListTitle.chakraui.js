@@ -1,7 +1,7 @@
 export const gridBoxStyle = {
   display: "grid",
   h: "50px",
-  gridTemplateColumns: "repeat(3, 1fr)",
+  gridTemplateColumns: "repeat(2, 1fr)",
   justifyItems: "start",
   alignItems: "center",
   position: "sticky",
