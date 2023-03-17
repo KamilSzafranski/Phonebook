@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Contacts } from "./Contacts/Contacts";
 import { useDispatch, useSelector } from "react-redux";
-import { selectError } from "redux/selector";
+import { selectError, selectisLoding } from "redux/selector";
 import { fetchContacts } from "redux/phoneBook/phoneBook.thunk";
 import { ErrorAlert } from "./ErrorAlert/ErrorAlert";
 
@@ -14,12 +14,18 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./Home/Home";
 import { Login } from "pages/login/login";
 import { Register } from "pages/register/register";
+import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
+import { persistor } from "redux/store";
 
 export const App = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
+  const isLogin = useSelector(selectisLoding);
 
   useEffect(() => {
+    persistor.pause();
+    persistor.purge();
+
     dispatch(fetchContacts());
   }, [dispatch]);
 
@@ -38,7 +44,10 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="contacts" element={<Contacts />} />
+          <Route
+            path="contacts"
+            element={<PrivateRoute component={<Contacts />} />}
+          />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

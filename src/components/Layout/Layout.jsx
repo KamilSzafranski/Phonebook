@@ -21,6 +21,7 @@ export const Layout = () => {
     event.preventDefault();
     dispatch(logoutThunk());
   };
+
   return (
     <>
       <header>
@@ -45,6 +46,7 @@ export const Layout = () => {
                 label="Contacts list is avaible to login users!"
                 bg="teal.800"
                 mt="10px"
+                visibility={isLogin === true ? "hidden" : "visible"}
               >
                 <Icon
                   as={PhoneIcon}
