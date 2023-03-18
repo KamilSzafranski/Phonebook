@@ -10,6 +10,7 @@ export const selectAuthPending = state => state.auth.isPending;
 export const selectError = state => state.phoneBook.error ?? state.auth.error;
 export const selectUser = state => state.auth.user;
 export const selectIsRefresh = state => state.auth.isRefresh;
+export const selectIsEditable = state => state.phoneBook.isEditable;
 
 export const selectFileredContacts = createSelector(
   [selectContacts, selectFilters],

@@ -41,3 +41,20 @@ export const addContacts = createAsyncThunk(
     }
   }
 );
+
+export const patchContact = createAsyncThunk(
+  "phoneBook/patchContacts",
+  async ({ name, number, id }, thunkAPI) => {
+    try {
+      const contact = {
+        name,
+        number,
+      };
+      const response = await axios.patch(`/contacts/${id}`, contact);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

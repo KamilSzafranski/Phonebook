@@ -11,22 +11,29 @@ import {
   buttonAddContactStyle,
   filterInputStyle,
 } from "./Contact.chakraui";
-
-import { fetchContacts } from "redux/phoneBook/phoneBook.thunk";
-import { selectIsRefresh } from "redux/selector";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { selectFilters, selectIsRefresh } from "redux/selector";
 
 export const Contacts = props => {
   const dispatch = useDispatch();
-  const isRefresh = useSelector(selectIsRefresh);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filter = useSelector(selectFilters);
+
+  const refresh = useSelector(selectIsRefresh);
 
   useEffect(() => {
-    if (!isRefresh) dispatch(fetchContacts());
-  }, [isRefresh]);
+    if (refresh) {
+      setSearchParams();
+    } else {
+      dispatch(addFilterAction(searchParams.get("filter") ?? ""));
+    }
+  }, []);
 
   const handleInput = event => {
     const {
       target: { value },
     } = event;
+    setSearchParams({ filter: value });
     dispatch(addFilterAction(value));
   };
   const handleModalAdd = () => {
@@ -52,6 +59,7 @@ export const Contacts = props => {
       <Input
         sx={filterInputStyle}
         onChange={handleInput}
+        value={filter}
         focusBorderColor="teal.400"
       />
 

@@ -18,10 +18,13 @@ import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 
 import { refreshThunk } from "redux/auth/auth.thunk";
 import { ContactDetail } from "./ContactDetail/ContactDetail";
+import { selectIsRefresh } from "redux/selector";
+import { fetchContacts } from "redux/phoneBook/phoneBook.thunk";
 
 export const App = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
+  const isRefresh = useSelector(selectIsRefresh);
 
   useEffect(() => {
     dispatch(refreshThunk());
@@ -32,6 +35,10 @@ export const App = () => {
       dispatch(openModalAction(ModalStatus.ERROR_ALERT));
     }
   }, [error, dispatch]);
+
+  useEffect(() => {
+    if (!isRefresh) dispatch(fetchContacts());
+  }, [isRefresh]);
 
   return (
     <>

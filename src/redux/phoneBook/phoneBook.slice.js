@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addContacts, deleteContacts, fetchContacts } from "./phoneBook.thunk";
+import { element } from "prop-types";
+import {
+  addContacts,
+  deleteContacts,
+  fetchContacts,
+  patchContact,
+} from "./phoneBook.thunk";
 
 const phoneBookInitialState = {
   isLoading: false,
@@ -29,18 +35,29 @@ const phoneBookSlice = createSlice({
   name: "phoneBook",
   initialState: phoneBookInitialState,
   reducers: {
-    closeModalAction(state, action) {
+    setEditableAction: (state, action) => {
+      state.isEditable = action.payload;
+    },
+    closeModalAction: (state, action) => {
       state.modal = null;
     },
-    openModalAction(state, action) {
+    openModalAction: (state, action) => {
       state.modal = action.payload;
     },
-    setIdToDeleteAction(state, action) {
+    setIdToDeleteAction: (state, action) => {
       state.idToDelete = action.payload;
     },
   },
   extraReducers: builder => {
     builder
+      .addCase(patchContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const searchIndex = state.contacts.findIndex(
+          element => element.id === action.payload.id
+        );
+
+        state.contacts.splice(searchIndex, 1, action.payload);
+      })
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.contacts = action.payload;
@@ -63,6 +80,10 @@ const phoneBookSlice = createSlice({
   },
 });
 
-export const { closeModalAction, openModalAction, setIdToDeleteAction } =
-  phoneBookSlice.actions;
+export const {
+  closeModalAction,
+  openModalAction,
+  setIdToDeleteAction,
+  setEditableAction,
+} = phoneBookSlice.actions;
 export const phoneBookReducer = phoneBookSlice.reducer;

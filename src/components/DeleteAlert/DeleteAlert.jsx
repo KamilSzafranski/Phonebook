@@ -15,13 +15,22 @@ import { deleteContacts } from "redux/phoneBook/phoneBook.thunk";
 import { selectIdToDelete, selectModal } from "redux/selector";
 import { ModalStatus } from "redux/constant";
 import { closeModalAction } from "redux/phoneBook/phoneBook.slice";
+import { useNavigate } from "react-router-dom";
+import { addFilterAction } from "redux/filters/filters.slice";
 
 export const DeleteAlert = props => {
   const cancelRef = useRef();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const modal = useSelector(selectModal);
   const id = useSelector(selectIdToDelete);
-  const handleDelete = () => dispatch(deleteContacts(id));
+  const handleDelete = e => {
+    e.preventDefault();
+    dispatch(deleteContacts(id));
+    dispatch(addFilterAction(""));
+    navigate("/contacts");
+  };
+
   const handleClose = () => dispatch(closeModalAction());
 
   return (
