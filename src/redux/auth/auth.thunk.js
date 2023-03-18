@@ -58,7 +58,6 @@ export const refreshThunk = createAsyncThunk(
       setHeaderToken(token);
 
       const respone = await axios.get("/users/current");
-      console.log(respone.data);
       return respone.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
