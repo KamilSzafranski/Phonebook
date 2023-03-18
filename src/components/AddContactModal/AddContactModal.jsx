@@ -18,11 +18,7 @@ import { selectContacts, selectModal } from "redux/selector";
 import { addContacts } from "redux/phoneBook/phoneBook.thunk";
 import { ModalStatus } from "redux/constant";
 import { closeModalAction } from "redux/phoneBook/phoneBook.slice";
-import {
-  phoneInputStyle,
-  nameInputStyle,
-  emailInputStyle,
-} from "./AddContactModal.chakraui";
+import { phoneInputStyle, nameInputStyle } from "./AddContactModal.chakraui";
 
 export const AddContactModal = props => {
   const toast = useToast();

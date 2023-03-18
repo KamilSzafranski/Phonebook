@@ -1,6 +1,3 @@
-import { useSelector } from "react-redux";
-import { selectFilters } from "redux/selector";
-
 export const menuBoxStyle = {
   as: "section",
   p: "10px 12%",

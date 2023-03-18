@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addFilterAction } from "redux/filters/filters.slice";
 import { Box, Heading, Text, Input, Button } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
@@ -12,7 +11,7 @@ import {
   buttonAddContactStyle,
   filterInputStyle,
 } from "./Contact.chakraui";
-import { selectIsLogin } from "redux/selector";
+
 import { fetchContacts } from "redux/phoneBook/phoneBook.thunk";
 
 export const Contacts = props => {

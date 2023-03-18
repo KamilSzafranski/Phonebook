@@ -1,6 +1,6 @@
 import { Flex, Text, Icon, Button, Tooltip, Box } from "@chakra-ui/react";
 import { NavLink, Outlet } from "react-router-dom";
-import { ExternalLinkIcon, PhoneIcon, SettingsIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon, PhoneIcon } from "@chakra-ui/icons";
 import { HomeIcon } from "image/icon/home";
 import {
   flexStyle,

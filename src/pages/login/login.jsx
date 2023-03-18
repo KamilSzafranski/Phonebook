@@ -14,7 +14,6 @@ import phonnebook from "../../image/phonebook.jpg";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "redux/auth/auth.thunk";
-import { useNavigate } from "react-router-dom";
 import { selectAuthPending, selectIsLogin } from "redux/selector";
 import { useEffect } from "react";
 import { persistor } from "redux/store";
@@ -24,7 +23,6 @@ export const Login = () => {
   const pending = useSelector(selectAuthPending);
 
   const isLogin = useSelector(selectIsLogin);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (isLogin) navigate("/contacts");

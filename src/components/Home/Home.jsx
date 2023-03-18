@@ -16,7 +16,6 @@ import {
   mainTitleStyle,
   statsBoxStyle,
   statsStyle,
-  titleStyle,
 } from "./Home.chakraui";
 
 export const Home = props => {

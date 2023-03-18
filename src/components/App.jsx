@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Contacts } from "./Contacts/Contacts";
 import { useDispatch, useSelector } from "react-redux";
-import { selectError, selectisLoding } from "redux/selector";
-import { fetchContacts } from "redux/phoneBook/phoneBook.thunk";
+import { selectError } from "redux/selector";
+
 import { ErrorAlert } from "./ErrorAlert/ErrorAlert";
 
 import { AddContactModal } from "./AddContactModal/AddContactModal";
@@ -15,7 +15,7 @@ import { Home } from "./Home/Home";
 import { Login } from "pages/login/login";
 import { Register } from "pages/register/register";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
-import { persistor } from "redux/store";
+
 import { refreshThunk } from "redux/auth/auth.thunk";
 
 export const App = () => {
