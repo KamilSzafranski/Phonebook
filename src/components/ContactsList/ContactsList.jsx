@@ -25,7 +25,7 @@ export const ContactsList = props => {
                 <ContactsItem
                   key={element.id}
                   name={element.name}
-                  number={element.phone}
+                  number={element.number}
                   email={element.email}
                   id={element.id}
                 />

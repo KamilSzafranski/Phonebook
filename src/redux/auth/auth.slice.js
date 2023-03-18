@@ -14,9 +14,9 @@ const authInitialState = {
   isPending: false,
 };
 
-const isPendingAction = action =>
+const isPendingAuthAction = action =>
   action.type.endsWith("pending") && action.type.startsWith("auth");
-const isRejectedAction = action =>
+const isRejectedAuthAction = action =>
   action.type.endsWith("rejected") && action.type.startsWith("auth");
 
 export const authSlice = createSlice({
@@ -48,11 +48,11 @@ export const authSlice = createSlice({
         state.isLogin = true;
       })
 
-      .addMatcher(isPendingAction, (state, action) => {
+      .addMatcher(isPendingAuthAction, (state, action) => {
         state.isPending = true;
       })
-      .addMatcher(isRejectedAction, (state, action) => {
-        if (!action.payload === "No remember") state.error = action.payload;
+      .addMatcher(isRejectedAuthAction, (state, action) => {
+        if (action.payload !== "No remember") state.error = action.payload;
 
         state.isPending = false;
       });

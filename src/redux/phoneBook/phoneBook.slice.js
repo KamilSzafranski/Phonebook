@@ -19,6 +19,11 @@ const handleError = (state, action) => {
   state.error = action.payload;
 };
 
+const isPendingPhoneBookAction = action =>
+  action.type.endsWith("pending") && action.type.startsWith("phoneBook");
+const isRejectedPhoneBookAction = action =>
+  action.type.endsWith("rejected") && action.type.startsWith("phoneBook");
+
 const phoneBookSlice = createSlice({
   name: "phoneBook",
   initialState: phoneBookInitialState,
@@ -33,30 +38,27 @@ const phoneBookSlice = createSlice({
       state.idToDelete = action.payload;
     },
   },
-  extraReducers: {
-    [fetchContacts.pending]: handlePending,
-    [deleteContacts.pending]: handlePending,
-    [addContacts.pending]: handlePending,
-    [deleteContacts.rejected]: handleError,
-    [fetchContacts.rejected]: handleError,
-    [addContacts.rejected]: handleError,
-    [fetchContacts.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.contacts = action.payload;
-    },
-    [deleteContacts.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.modal = null;
-      const itemToDelete = state.contacts.findIndex(
-        element => element.id === action.payload.id
-      );
-      state.contacts.splice(itemToDelete, 1);
-    },
-    [addContacts.fulfilled]: (state, action) => {
-      state.modal = null;
-      state.contacts.push(action.payload);
-      state.isLoading = false;
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.contacts = action.payload;
+      })
+      .addCase(deleteContacts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.modal = null;
+        const itemToDelete = state.contacts.findIndex(
+          element => element.id === action.payload.id
+        );
+        state.contacts.splice(itemToDelete, 1);
+      })
+      .addCase(addContacts.fulfilled, (state, action) => {
+        state.modal = null;
+        state.contacts.push(action.payload);
+        state.isLoading = false;
+      })
+      .addMatcher(isPendingPhoneBookAction, handlePending)
+      .addMatcher(isRejectedPhoneBookAction, handleError);
   },
 });
 

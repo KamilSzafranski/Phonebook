@@ -21,11 +21,9 @@ import { refreshThunk } from "redux/auth/auth.thunk";
 export const App = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
-  const isLogin = useSelector(selectisLoding);
 
   useEffect(() => {
     dispatch(refreshThunk());
-    dispatch(fetchContacts());
   }, [dispatch]);
 
   useEffect(() => {

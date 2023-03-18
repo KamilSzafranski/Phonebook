@@ -41,7 +41,7 @@ export const AddContactModal = props => {
     } = event.currentTarget.elements;
 
     const nameTaken = contact.some(elements => elements.name === text);
-    const numberTaken = contact.some(elements => elements.phone === num);
+    const numberTaken = contact.some(elements => elements.number === num);
 
     if (nameTaken && numberTaken) {
       return toast({
@@ -68,9 +68,19 @@ export const AddContactModal = props => {
           <form onSubmit={handleAdd} id="formId">
             <FormControl>
               <FormLabel htmlFor="Name">First name</FormLabel>
-              <Input sx={nameInputStyle} ref={initialRef} />
+              <Input
+                id="name"
+                name="name"
+                sx={nameInputStyle}
+                ref={initialRef}
+              />
               <FormLabel htmlFor="number">Phone</FormLabel>
-              <Input sx={phoneInputStyle} />
+              <Input
+                id="number"
+                type="tel"
+                name="number"
+                sx={phoneInputStyle}
+              />
             </FormControl>
           </form>
         </ModalBody>

@@ -13,11 +13,14 @@ import {
   filterInputStyle,
 } from "./Contact.chakraui";
 import { selectIsLogin } from "redux/selector";
-import { useNavigate } from "react-router-dom";
+import { fetchContacts } from "redux/phoneBook/phoneBook.thunk";
 
 export const Contacts = props => {
   const dispatch = useDispatch();
-  const isLogin = useSelector(selectIsLogin);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, []);
 
   const handleInput = event => {
     const {
