@@ -7,6 +7,7 @@ const phoneBookInitialState = {
   contacts: [],
   modal: null,
   idToDelete: null,
+  isEditable: false,
 };
 
 const handlePending = (state, action) => {
