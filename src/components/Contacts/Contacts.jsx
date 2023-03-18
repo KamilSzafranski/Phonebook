@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFilterAction } from "redux/filters/filters.slice";
 import { Box, Heading, Text, Input, Button } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
@@ -13,13 +13,15 @@ import {
 } from "./Contact.chakraui";
 
 import { fetchContacts } from "redux/phoneBook/phoneBook.thunk";
+import { selectIsRefresh } from "redux/selector";
 
 export const Contacts = props => {
   const dispatch = useDispatch();
+  const isRefresh = useSelector(selectIsRefresh);
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, []);
+    if (!isRefresh) dispatch(fetchContacts());
+  }, [isRefresh]);
 
   const handleInput = event => {
     const {

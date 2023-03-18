@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import phonnebook from "../../image/phonebook.jpg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "redux/auth/auth.thunk";
 import { selectAuthPending, selectIsLogin } from "redux/selector";
@@ -21,6 +21,7 @@ import { persistor } from "redux/store";
 export const Login = () => {
   const dispatch = useDispatch();
   const pending = useSelector(selectAuthPending);
+  const navigate = useNavigate();
 
   const isLogin = useSelector(selectIsLogin);
 

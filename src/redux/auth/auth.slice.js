@@ -11,6 +11,7 @@ const authInitialState = {
   isLogin: null,
   user: {},
   error: null,
+  isRefresh: true,
   isPending: false,
 };
 
@@ -46,6 +47,7 @@ export const authSlice = createSlice({
         state.isPending = false;
         state.user = action.payload;
         state.isLogin = true;
+        state.isRefresh = false;
       })
 
       .addMatcher(isPendingAuthAction, (state, action) => {
@@ -55,6 +57,7 @@ export const authSlice = createSlice({
         if (action.payload !== "No remember") state.error = action.payload;
 
         state.isPending = false;
+        state.isRefresh = false;
       });
   },
 });

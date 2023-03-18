@@ -8,21 +8,25 @@ import {
 } from "redux/phoneBook/phoneBook.slice";
 import { ModalStatus } from "redux/constant";
 import { listItemStyle } from "./ContactsItem.chakraui";
+import { NavLink } from "react-router-dom";
 
 export const ContactsItem = ({ name, number, id, email }) => {
   const dispatch = useDispatch();
-  const handleDelete = event => {
-    event.preventDefault();
-    dispatch(setIdToDeleteAction(id));
-    dispatch(openModalAction(ModalStatus.DELETE_ALERT));
-  };
+
+  // const handleDelete = event => {
+  //   event.preventDefault();
+  //   dispatch(setIdToDeleteAction(id));
+  //   dispatch(openModalAction(ModalStatus.DELETE_ALERT));
+  // };
 
   return (
     <>
-      <ListItem sx={listItemStyle} onClick={handleDelete}>
-        <Text>{name}:</Text>
-        <Text> {number}</Text>
-      </ListItem>
+      <NavLink to={`${id}`}>
+        <ListItem sx={listItemStyle}>
+          <Text>{name}:</Text>
+          <Text> {number}</Text>
+        </ListItem>
+      </NavLink>
       <Divider mb="10px" borderColor="teal.400" />
     </>
   );

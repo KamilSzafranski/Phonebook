@@ -17,6 +17,7 @@ import { Register } from "pages/register/register";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 
 import { refreshThunk } from "redux/auth/auth.thunk";
+import { ContactDetail } from "./ContactDetail/ContactDetail";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ export const App = () => {
             path="contacts"
             element={<PrivateRoute component={<Contacts />} />}
           />
+          <Route path="contacts/:id" element={<ContactDetail />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
