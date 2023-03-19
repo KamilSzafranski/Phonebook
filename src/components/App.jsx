@@ -10,7 +10,8 @@ import { refreshThunk } from "redux/auth/auth.thunk";
 import { selectIsRefresh } from "redux/selector";
 import { fetchContacts } from "redux/phoneBook/phoneBook.thunk";
 import { Layout } from "./Layout/Layout";
-import { CircleSpinner } from "./CircleSpinner/CircleSpinner";
+
+import { Fallback } from "./Fallback/Fallback";
 
 const Home = lazy(() => import("./Home/Home"));
 const ContactDetail = lazy(() => import("./ContactDetail/ContactDetail"));
@@ -42,7 +43,7 @@ export const App = () => {
 
   return (
     <>
-      <Suspense fallback={<CircleSpinner pt="50px" dissmension="100px" />}>
+      <Suspense fallback={<Fallback />}>
         <DeleteAlert />
         <ErrorAlert />
         <AddContactModal />
@@ -61,9 +62,7 @@ export const App = () => {
         <Route
           path="/login"
           element={
-            <Suspense
-              fallback={<CircleSpinner pt="150px" dissmension="250px" />}
-            >
+            <Suspense fallback={<Fallback />}>
               <Login />
             </Suspense>
           }
@@ -71,9 +70,7 @@ export const App = () => {
         <Route
           path="/register"
           element={
-            <Suspense
-              fallback={<CircleSpinner pt="150px" dissmension="250px" />}
-            >
+            <Suspense fallback={<Fallback />}>
               <Register />
             </Suspense>
           }

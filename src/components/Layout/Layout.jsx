@@ -14,7 +14,7 @@ import { selectIsLogin, selectUser } from "redux/selector";
 import { logoutThunk } from "redux/auth/auth.thunk";
 import { persistor } from "redux/store";
 import { Suspense } from "react";
-import { CircleSpinner } from "components/CircleSpinner/CircleSpinner";
+import { Fallback } from "components/Fallback/Fallback";
 
 export const Layout = () => {
   const dispatch = useDispatch();
@@ -91,7 +91,7 @@ export const Layout = () => {
           </Flex>
         </Flex>
       </header>
-      <Suspense fallback={<CircleSpinner pt="150px" dissmension="250px" />}>
+      <Suspense fallback={<Fallback />}>
         <Outlet />
       </Suspense>
     </>
