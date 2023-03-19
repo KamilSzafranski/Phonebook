@@ -41,6 +41,7 @@ export const logoutThunk = createAsyncThunk(
     try {
       const response = await axios.post("/users/logout");
       axios.defaults.headers.common.Authorization = "";
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
