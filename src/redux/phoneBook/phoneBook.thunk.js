@@ -5,6 +5,7 @@ export const fetchContacts = createAsyncThunk(
   "phoneBook/getContacts",
   async (_, thunkAPI) => {
     try {
+      const token = thunkAPI.getState().auth.token;
       const response = await axios.get("/contacts");
       return response.data;
     } catch (error) {

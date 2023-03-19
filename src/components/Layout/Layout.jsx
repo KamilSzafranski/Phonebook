@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectIsLogin, selectUser } from "redux/selector";
 import { logoutThunk } from "redux/auth/auth.thunk";
 import { persistor } from "redux/store";
+import { Suspense } from "react";
 
 export const Layout = () => {
   const dispatch = useDispatch();
@@ -88,7 +89,9 @@ export const Layout = () => {
           </Flex>
         </Flex>
       </header>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

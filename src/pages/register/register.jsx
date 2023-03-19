@@ -13,10 +13,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerThunk } from "redux/auth/auth.thunk";
 import { selectIsLogin } from "redux/selector";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { selectAuthPending } from "redux/selector";
 
-export const Register = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const isLogin = useSelector(selectIsLogin);
   const navigate = useNavigate();
@@ -106,3 +106,5 @@ export const Register = () => {
     </Box>
   );
 };
+
+export default Register;

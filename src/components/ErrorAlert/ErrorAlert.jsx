@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
 import { ModalStatus } from "redux/constant";
 import { closeModalAction } from "redux/phoneBook/phoneBook.slice";
 
-export const ErrorAlert = props => {
+const ErrorAlert = props => {
   const cancelRef = useRef();
   const errorType = useSelector(selectError);
   const dispatch = useDispatch();
@@ -54,3 +54,5 @@ ErrorAlert.propTypes = {
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
 };
+
+export default ErrorAlert;

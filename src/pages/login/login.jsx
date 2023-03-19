@@ -15,10 +15,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "redux/auth/auth.thunk";
 import { selectAuthPending, selectIsLogin } from "redux/selector";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { persistor } from "redux/store";
 
-export const Login = () => {
+const Login = () => {
   const dispatch = useDispatch();
   const pending = useSelector(selectAuthPending);
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export const Login = () => {
 
   useEffect(() => {
     if (isLogin) navigate("/contacts");
-  }, [isLogin]);
+  }, [isLogin, navigate]);
 
   const handleLogin = event => {
     event.preventDefault();
@@ -125,3 +125,5 @@ export const Login = () => {
     </Box>
   );
 };
+
+export default Login;

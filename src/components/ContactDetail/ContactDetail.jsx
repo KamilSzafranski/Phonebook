@@ -27,8 +27,7 @@ import {
 } from "redux/phoneBook/phoneBook.slice";
 import { patchContact } from "redux/phoneBook/phoneBook.thunk";
 import { NavLink } from "react-router-dom";
-
-export const ContactDetail = () => {
+const ContactDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const editable = useSelector(selectIsEditable);
@@ -36,7 +35,7 @@ export const ContactDetail = () => {
   const allContacts = useSelector(selectContacts);
   const contact = useMemo(
     () => allContacts.filter(element => element.id === id),
-    [allContacts]
+    [allContacts, id]
   );
   const location = useLocation();
   const backLink = location?.state?.backLink ?? "/contacts";
@@ -45,7 +44,7 @@ export const ContactDetail = () => {
 
   useEffect(() => {
     dispatch(setEditableAction(false));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     nameRef.current.value = contact[0]?.name ?? "";
@@ -150,3 +149,5 @@ export const ContactDetail = () => {
     </>
   );
 };
+
+export default ContactDetail;

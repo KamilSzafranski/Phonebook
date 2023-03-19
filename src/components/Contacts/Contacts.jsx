@@ -22,12 +22,10 @@ export const Contacts = props => {
   const refresh = useSelector(selectIsRefresh);
 
   useEffect(() => {
-    if (refresh) {
-      setSearchParams();
-    } else {
-      dispatch(addFilterAction(searchParams.get("filter") ?? ""));
-    }
-  }, []);
+    refresh === true
+      ? setSearchParams()
+      : dispatch(addFilterAction(searchParams.get("filter") ?? ""));
+  }, [dispatch, setSearchParams, addFilterAction, searchParams]);
 
   const handleInput = event => {
     const {

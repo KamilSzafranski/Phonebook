@@ -18,7 +18,7 @@ import {
   statsStyle,
 } from "./Home.chakraui";
 
-export const Home = props => {
+const Home = props => {
   return (
     <>
       <Box as="section" backgroundImage={bg} sx={mainBoxStyle}>
@@ -69,3 +69,5 @@ export const Home = props => {
     </>
   );
 };
+
+export default Home;

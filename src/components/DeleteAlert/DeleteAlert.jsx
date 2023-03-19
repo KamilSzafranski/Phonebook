@@ -18,7 +18,7 @@ import { closeModalAction } from "redux/phoneBook/phoneBook.slice";
 import { useNavigate } from "react-router-dom";
 import { addFilterAction } from "redux/filters/filters.slice";
 
-export const DeleteAlert = props => {
+const DeleteAlert = props => {
   const cancelRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -62,3 +62,5 @@ export const DeleteAlert = props => {
     </AlertDialog>
   );
 };
+
+export default DeleteAlert;

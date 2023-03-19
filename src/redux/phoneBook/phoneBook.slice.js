@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { element } from "prop-types";
 import {
   addContacts,
   deleteContacts,

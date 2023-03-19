@@ -20,7 +20,7 @@ import { ModalStatus } from "redux/constant";
 import { closeModalAction } from "redux/phoneBook/phoneBook.slice";
 import { phoneInputStyle, nameInputStyle } from "./AddContactModal.chakraui";
 
-export const AddContactModal = props => {
+const AddContactModal = props => {
   const toast = useToast();
   const initialRef = useRef();
   const dispatch = useDispatch();
@@ -91,3 +91,5 @@ export const AddContactModal = props => {
     </Modal>
   );
 };
+
+export default AddContactModal;
