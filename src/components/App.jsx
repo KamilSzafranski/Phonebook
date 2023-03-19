@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { Contacts } from "./Contacts/Contacts";
 import { useDispatch, useSelector } from "react-redux";
-import { selectError } from "redux/selector";
+import { selectError, selectisLoding, selectIsLogin } from "redux/selector";
 import { ModalStatus } from "redux/constant";
 import { openModalAction } from "redux/phoneBook/phoneBook.slice";
 import { Route, Routes } from "react-router-dom";
@@ -23,6 +23,7 @@ export const App = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
   const isRefresh = useSelector(selectIsRefresh);
+  const isLogin = useSelector(selectIsLogin);
 
   useEffect(() => {
     dispatch(refreshThunk());
@@ -35,8 +36,8 @@ export const App = () => {
   }, [error, dispatch]);
 
   useEffect(() => {
-    if (!isRefresh) dispatch(fetchContacts());
-  }, [isRefresh, dispatch]);
+    if (!isRefresh && isLogin) dispatch(fetchContacts());
+  }, [dispatch, isLogin, isRefresh]);
 
   return (
     <>
