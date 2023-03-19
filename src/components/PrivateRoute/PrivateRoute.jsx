@@ -4,5 +4,5 @@ import { selectIsLogin } from "redux/selector";
 
 export const PrivateRoute = ({ component }) => {
   const isLogin = useSelector(selectIsLogin);
-  return isLogin === true ? component : <Navigate to="/" />;
+  return isLogin ? component : <Navigate to="/" />;
 };

@@ -1,10 +1,3 @@
-export const spinnerStyle = {
-  color: "#2C7A7B",
-  w: "250px",
-  h: "250px",
-  emptyColor: "gray.200",
-};
-
 export const listStyle = {
   overflowY: "scroll",
   maxH: "60vh",

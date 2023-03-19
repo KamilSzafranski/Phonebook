@@ -11,7 +11,7 @@ import {
   buttonAddContactStyle,
   filterInputStyle,
 } from "./Contact.chakraui";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { selectFilters, selectIsRefresh } from "redux/selector";
 
 export const Contacts = props => {
@@ -22,10 +22,10 @@ export const Contacts = props => {
   const refresh = useSelector(selectIsRefresh);
 
   useEffect(() => {
-    refresh === true
+    refresh
       ? setSearchParams()
       : dispatch(addFilterAction(searchParams.get("filter") ?? ""));
-  }, [dispatch, setSearchParams, addFilterAction, searchParams]);
+  }, [dispatch, setSearchParams, searchParams, refresh]);
 
   const handleInput = event => {
     const {

@@ -14,11 +14,13 @@ import { selectIsLogin, selectUser } from "redux/selector";
 import { logoutThunk } from "redux/auth/auth.thunk";
 import { persistor } from "redux/store";
 import { Suspense } from "react";
+import { CircleSpinner } from "components/CircleSpinner/CircleSpinner";
 
 export const Layout = () => {
   const dispatch = useDispatch();
   const isLogin = useSelector(selectIsLogin);
   const user = useSelector(selectUser);
+
   const handleLogout = event => {
     event.preventDefault();
     persistor.pause();
@@ -50,12 +52,12 @@ export const Layout = () => {
                 label="Contacts list is avaible to login users!"
                 bg="teal.800"
                 mt="10px"
-                visibility={isLogin === true ? "hidden" : "visible"}
+                visibility={isLogin ? "hidden" : "visible"}
               >
                 <Icon
                   as={PhoneIcon}
                   boxSize={6}
-                  sx={isLogin === true ? iconStyle : loggedOutIconStyle}
+                  sx={isLogin ? iconStyle : loggedOutIconStyle}
                 />
               </Tooltip>
             </NavLink>
@@ -89,7 +91,7 @@ export const Layout = () => {
           </Flex>
         </Flex>
       </header>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<CircleSpinner pt="150px" dissmension="250px" />}>
         <Outlet />
       </Suspense>
     </>

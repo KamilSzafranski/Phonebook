@@ -5,7 +5,7 @@ import { ListItem, Divider, Text } from "@chakra-ui/react";
 import { listItemStyle } from "./ContactsItem.chakraui";
 import { NavLink, useLocation } from "react-router-dom";
 
-export const ContactsItem = ({ name, number, id, email }) => {
+export const ContactsItem = ({ name, number, id }) => {
   const location = useLocation();
 
   return (
@@ -25,5 +25,4 @@ ContactsItem.propTypes = {
   name: PropTypes.string,
   number: PropTypes.string,
   id: PropTypes.string,
-  email: PropTypes.string,
 };

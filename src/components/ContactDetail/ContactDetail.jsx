@@ -6,8 +6,6 @@ import {
   FormLabel,
   Input,
   Button,
-  Center,
-  Spinner,
 } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -27,20 +25,22 @@ import {
 } from "redux/phoneBook/phoneBook.slice";
 import { patchContact } from "redux/phoneBook/phoneBook.thunk";
 import { NavLink } from "react-router-dom";
+import { CircleSpinner } from "components/CircleSpinner/CircleSpinner";
+
 const ContactDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const editable = useSelector(selectIsEditable);
   const isLoading = useSelector(selectisLoding);
   const allContacts = useSelector(selectContacts);
+  const location = useLocation();
+  const nameRef = useRef();
+  const numberRef = useRef();
   const contact = useMemo(
     () => allContacts.filter(element => element.id === id),
     [allContacts, id]
   );
-  const location = useLocation();
   const backLink = location?.state?.backLink ?? "/contacts";
-  const nameRef = useRef();
-  const numberRef = useRef();
 
   useEffect(() => {
     dispatch(setEditableAction(false));
@@ -75,18 +75,7 @@ const ContactDetail = () => {
 
   return (
     <>
-      {isLoading && (
-        <Center pt="150px">
-          <Spinner
-            thickness="10px"
-            speed="1s"
-            color="#2C7A7B"
-            w="250px"
-            h="250px"
-            emptyColor="gray.200"
-          />
-        </Center>
-      )}
+      {isLoading && <CircleSpinner pt="150px" dissmension="250px" />}
 
       {!isLoading && (
         <Box display="grid" placeContent="center" pt="50px" position="relative">

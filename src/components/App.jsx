@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { Contacts } from "./Contacts/Contacts";
 import { useDispatch, useSelector } from "react-redux";
-import { selectError, selectisLoding, selectIsLogin } from "redux/selector";
+import { selectError, selectIsLogin } from "redux/selector";
 import { ModalStatus } from "redux/constant";
 import { openModalAction } from "redux/phoneBook/phoneBook.slice";
 import { Route, Routes } from "react-router-dom";
@@ -10,6 +10,7 @@ import { refreshThunk } from "redux/auth/auth.thunk";
 import { selectIsRefresh } from "redux/selector";
 import { fetchContacts } from "redux/phoneBook/phoneBook.thunk";
 import { Layout } from "./Layout/Layout";
+import { CircleSpinner } from "./CircleSpinner/CircleSpinner";
 
 const Home = lazy(() => import("./Home/Home"));
 const ContactDetail = lazy(() => import("./ContactDetail/ContactDetail"));
@@ -41,7 +42,7 @@ export const App = () => {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<CircleSpinner pt="50px" dissmension="100px" />}>
         <DeleteAlert />
         <ErrorAlert />
         <AddContactModal />
@@ -60,7 +61,9 @@ export const App = () => {
         <Route
           path="/login"
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense
+              fallback={<CircleSpinner pt="150px" dissmension="250px" />}
+            >
               <Login />
             </Suspense>
           }
@@ -68,7 +71,9 @@ export const App = () => {
         <Route
           path="/register"
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense
+              fallback={<CircleSpinner pt="150px" dissmension="250px" />}
+            >
               <Register />
             </Suspense>
           }
