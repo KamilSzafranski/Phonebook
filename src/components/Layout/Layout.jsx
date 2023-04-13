@@ -31,69 +31,70 @@ export const Layout = () => {
   return (
     <>
       <header>
-        <Flex sx={menuBoxStyle}>
-          <NavLink to="/">
-            <Text sx={logoStyle}>
-              <Text as="span" color="teal.400">
-                Phone
-              </Text>
-              Book
-            </Text>
-          </NavLink>
-          <Flex sx={flexStyle}>
+        <Box bg="gray.700">
+          <Flex sx={menuBoxStyle}>
             <NavLink to="/">
-              <Icon as={HomeIcon} boxSize={6} sx={iconStyle} />
+              <Text sx={logoStyle}>
+                <Text as="span" color="teal.400">
+                  Phone
+                </Text>
+                Book
+              </Text>
             </NavLink>
-
-            <NavLink to="/contacts">
-              <Tooltip
-                hasArrow
-                arrowSize={15}
-                label="Contacts list is avaible to login users!"
-                bg="teal.800"
-                mt="10px"
-                visibility={isLogin ? "hidden" : "visible"}
-              >
-                <Icon
-                  as={PhoneIcon}
-                  boxSize={6}
-                  sx={isLogin ? iconStyle : loggedOutIconStyle}
-                />
-              </Tooltip>
-            </NavLink>
-            {!isLogin && (
-              <NavLink to="/login">
-                <Button colorScheme="teal" rightIcon={<ExternalLinkIcon />}>
-                  Log in
-                </Button>
+            <Flex sx={flexStyle}>
+              <NavLink to="/">
+                <Icon as={HomeIcon} boxSize={6} sx={iconStyle} />
               </NavLink>
-            )}
-            {isLogin && (
-              <Box display="flex" alignItems="center" gap="10px">
-                <Text>{user?.email}</Text>
+
+              <NavLink to="/contacts">
                 <Tooltip
                   hasArrow
                   arrowSize={15}
-                  label="Log out!"
+                  label="Contacts list is avaible to login users!"
                   bg="teal.800"
                   mt="10px"
+                  visibility={isLogin ? "hidden" : "visible"}
                 >
                   <Icon
-                    as={ExternalLinkIcon}
-                    _hover={{
-                      color: "teal.400",
-                    }}
-                    onClick={handleLogout}
+                    as={PhoneIcon}
+                    boxSize={6}
+                    sx={isLogin ? iconStyle : loggedOutIconStyle}
                   />
                 </Tooltip>
-              </Box>
-            )}
+              </NavLink>
+              {!isLogin && (
+                <NavLink to="/login">
+                  <Button colorScheme="teal" rightIcon={<ExternalLinkIcon />}>
+                    Log in
+                  </Button>
+                </NavLink>
+              )}
+              {isLogin && (
+                <Box display="flex" alignItems="center" gap="10px">
+                  <Text>{user?.email}</Text>
+                  <Tooltip
+                    hasArrow
+                    arrowSize={15}
+                    label="Log out!"
+                    bg="teal.800"
+                    mt="10px"
+                  >
+                    <Icon
+                      as={ExternalLinkIcon}
+                      _hover={{
+                        color: "teal.400",
+                      }}
+                      onClick={handleLogout}
+                    />
+                  </Tooltip>
+                </Box>
+              )}
+            </Flex>
           </Flex>
-        </Flex>
+        </Box>
       </header>
-      <Suspense fallback={<Fallback />}>
-        <Outlet />
-      </Suspense>
+
+      <Outlet />
     </>
   );
 };

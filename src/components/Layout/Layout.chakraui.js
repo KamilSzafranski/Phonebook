@@ -1,7 +1,8 @@
 export const menuBoxStyle = {
-  as: "section",
-  p: "10px 12%",
-  bg: "gray.700",
+  maxWidth: "1600px",
+  m: " 0 auto",
+  p: "10px 25px",
+
   color: "white",
   justifyContent: "space-between",
   alignItems: "center",

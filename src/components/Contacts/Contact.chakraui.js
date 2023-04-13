@@ -1,7 +1,5 @@
 export const boxStyle = {
-  maxW: "80%",
-  m: "0 auto",
-  p: "10px",
+  p: "10px ",
   boxShadow: "base",
   rounded: "md",
   position: "relative",

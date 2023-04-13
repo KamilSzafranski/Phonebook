@@ -6,7 +6,7 @@ import { gridBoxStyle } from "./ContactsListTitle.chakraui";
 export const ContactsListTitle = props => {
   return (
     <Box sx={gridBoxStyle}>
-      <Avatar src="https://bit.ly/broken-link" size="xs" />
+      <Avatar src="https://bit.ly/broken-link" atl="avatar icon" size="xs" />
       <PhoneIcon />
     </Box>
   );

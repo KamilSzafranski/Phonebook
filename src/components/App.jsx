@@ -47,35 +47,21 @@ export const App = () => {
         <DeleteAlert />
         <ErrorAlert />
         <AddContactModal />
+
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route
+              path="contacts"
+              element={<PrivateRoute component={<Contacts />} />}
+            />
+            <Route path="contacts/:id" element={<ContactDetail />} />
+          </Route>
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
       </Suspense>
-
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route
-            path="contacts"
-            element={<PrivateRoute component={<Contacts />} />}
-          />
-          <Route path="contacts/:id" element={<ContactDetail />} />
-        </Route>
-
-        <Route
-          path="/login"
-          element={
-            <Suspense fallback={<Fallback />}>
-              <Login />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <Suspense fallback={<Fallback />}>
-              <Register />
-            </Suspense>
-          }
-        />
-      </Routes>
     </>
   );
 };

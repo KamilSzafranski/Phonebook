@@ -39,32 +39,34 @@ export const Contacts = props => {
   };
 
   return (
-    <Box sx={boxStyle}>
-      <Button
-        colorScheme="teal"
-        onClick={handleModalAdd}
-        sx={buttonAddContactStyle}
-        rightIcon={<AddIcon />}
-      >
-        Add Contact
-      </Button>
-      <Heading as="h2" mb="5px">
-        PhoneBook
-      </Heading>
-      <Text fontSize="md" fontWeight="700" mb="10px">
-        Find contacts by name
-      </Text>
-      <Input
-        sx={filterInputStyle}
-        onChange={handleInput}
-        value={filter}
-        focusBorderColor="teal.400"
-      />
+    <Box maxW="1600px" m="0 auto" p="10px 25px">
+      <Box sx={boxStyle}>
+        <Button
+          colorScheme="teal"
+          onClick={handleModalAdd}
+          sx={buttonAddContactStyle}
+          rightIcon={<AddIcon />}
+        >
+          Add Contact
+        </Button>
+        <Heading as="h2" mb="5px">
+          PhoneBook
+        </Heading>
+        <Text fontSize="md" fontWeight="700" mb="10px">
+          Find contacts by name
+        </Text>
+        <Input
+          sx={filterInputStyle}
+          onChange={handleInput}
+          value={filter}
+          focusBorderColor="teal.400"
+        />
 
-      <ContactsList />
-      <Text fontSize="xs" pt="10px">
-        * to delete item just click on it
-      </Text>
+        <ContactsList />
+        <Text fontSize="xs" pt="10px">
+          * to get datails item just click on it
+        </Text>
+      </Box>
     </Box>
   );
 };

@@ -81,6 +81,7 @@ const ContactDetail = () => {
         <Box display="grid" placeContent="center" pt="50px" position="relative">
           <Avatar
             src="https://bit.ly/broken-link"
+            alt="contact avatar"
             size="2xl"
             justifySelf="center"
             mb="20px"

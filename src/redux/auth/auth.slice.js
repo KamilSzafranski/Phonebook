@@ -54,7 +54,10 @@ export const authSlice = createSlice({
         state.isPending = true;
       })
       .addMatcher(isRejectedAuthAction, (state, action) => {
-        if (action.payload !== "No remember") state.error = action.payload;
+        if (action.payload !== "No remember") {
+          state.error = action.payload;
+          state.isLogin = null;
+        }
 
         state.isPending = false;
         state.isRefresh = false;

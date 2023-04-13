@@ -1,59 +1,63 @@
-import {
-  Box,
-  Heading,
-  Text,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
-  Link,
-} from "@chakra-ui/react";
-import bg from "../../image/bg.jpg";
-import {
-  mainBoxStyle,
-  mainTextStyle,
-  mainTitleStyle,
-  statsBoxStyle,
-  statsStyle,
-} from "./Home.chakraui";
+import { Box, Text, Link, List, Image } from "@chakra-ui/react";
+
+import { mainBoxStyle, mainTextStyle, mainTitleStyle } from "./Home.chakraui";
+import { TypeItem } from "components/TypeItem/TypeItem";
+import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import add from "../../image/add.png";
+import edit from "../../image/edit.png";
+import del from "../../image/delete.png";
+import people from "../../image/people.png";
+import squircle from "../../image/squircle.svg";
 
 const Home = props => {
   return (
     <>
-      <Box as="section" backgroundImage={bg} sx={mainBoxStyle}>
-        <Box position="absolute" maxW="450px" right="10%" top="20%">
-          <Heading as="h1" sx={mainTitleStyle}>
-            Lorem, ipsum dolor.
-          </Heading>
-          <Text sx={mainTextStyle}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum
-            praesentium architecto odio deleniti, corporis nam exercitationem
-            dolorem tempora odit? Mollitia fugit exercitationem omnis voluptates
-            ex. Nisi odio minima asperiores unde!
-          </Text>
+      <Box as="section" bg="gray.700">
+        <Box sx={mainBoxStyle} m="0 auto" maxW="1600px" position="relative">
+          <Image
+            src={people}
+            alt="Phone with phonebook"
+            position="absolute"
+            top="50px"
+            right="50px"
+            width="300px"
+            height="300px"
+            sx={{
+              maskImage: `url(${squircle})`,
+            }}
+          />
+          <Box maxWidth="350px">
+            <Text sx={mainTitleStyle}> Lorem Ipsum</Text>
+            <Text sx={mainTextStyle} color="teal">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged.
+            </Text>
+          </Box>
         </Box>
-        <Box sx={statsBoxStyle}>
-          <Stat sx={statsStyle}>
-            <StatLabel fontSize="3xl" fontWeight="700">
-              Users
-            </StatLabel>
-            <StatNumber>1846</StatNumber>
-            <StatHelpText>
-              <StatArrow type="increase" />
-              13.36%
-            </StatHelpText>
-          </Stat>
-          <Stat sx={statsStyle}>
-            <StatLabel fontSize="3xl" fontWeight="700">
-              Contacts
-            </StatLabel>
-            <StatNumber>484948</StatNumber>
-            <StatHelpText>
-              <StatArrow type="desrease" />
-              1.25%
-            </StatHelpText>
-          </Stat>
+      </Box>
+      <Box as="section" bg="gray.100">
+        <Box m="0 auto" maxW="1600px">
+          <List display="flex" justifyContent="center" gap="30px" p="10px 25px">
+            <TypeItem
+              iconType={AddIcon}
+              photoType={add}
+              altType="add file photo"
+            />
+            <TypeItem
+              iconType={EditIcon}
+              photoType={edit}
+              altType="delete file photo"
+            />
+            <TypeItem
+              iconType={DeleteIcon}
+              photoType={del}
+              altType="update file photo"
+            />
+          </List>
         </Box>
       </Box>
       <Box
