@@ -13,8 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectIsLogin, selectUser } from "redux/selector";
 import { logoutThunk } from "redux/auth/auth.thunk";
 import { persistor } from "redux/store";
-import { Suspense } from "react";
-import { Fallback } from "components/Fallback/Fallback";
 
 export const Layout = () => {
   const dispatch = useDispatch();

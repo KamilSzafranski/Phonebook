@@ -19,7 +19,6 @@ import { addContacts } from "redux/phoneBook/phoneBook.thunk";
 import { ModalStatus } from "redux/constant";
 import { closeModalAction } from "redux/phoneBook/phoneBook.slice";
 import { phoneInputStyle, nameInputStyle } from "./AddContactModal.chakraui";
-import { createPortal } from "react-dom";
 
 const AddContactModal = props => {
   const toast = useToast();
