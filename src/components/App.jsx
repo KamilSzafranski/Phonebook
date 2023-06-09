@@ -38,8 +38,8 @@ export const App = () => {
   }, [error, dispatch]);
 
   useEffect(() => {
-    if (!isRefresh && isLogin) dispatch(fetchContacts());
-  }, [dispatch, isLogin, isRefresh]);
+    if (!isRefresh && isLogin && !error) dispatch(fetchContacts());
+  }, [dispatch, isLogin, isRefresh, error]);
 
   return (
     <>

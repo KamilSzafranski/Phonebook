@@ -7,7 +7,7 @@ export const selectModal = state => state.phoneBook.modal;
 export const selectIdToDelete = state => state.phoneBook.idToDelete;
 export const selectIsLogin = state => state.auth.isLogin;
 export const selectAuthPending = state => state.auth.isPending;
-export const selectError = state => state.phoneBook.error ?? state.auth.error;
+export const selectError = state => state.phoneBook.error || state.auth.error;
 export const selectUser = state => state.auth.user;
 export const selectIsRefresh = state => state.auth.isRefresh;
 export const selectIsEditable = state => state.phoneBook.isEditable;

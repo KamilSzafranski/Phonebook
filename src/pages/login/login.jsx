@@ -15,7 +15,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "redux/auth/auth.thunk";
 import { selectAuthPending, selectIsLogin } from "redux/selector";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { persistor } from "redux/store";
 
 const Login = () => {
@@ -46,6 +46,17 @@ const Login = () => {
 
     dispatch(loginThunk(user));
   };
+
+  const handleDemo = useCallback(() => {
+    persistor.pause();
+    persistor.purge();
+    dispatch(
+      loginThunk({
+        email: "Phonebook@phone.pl",
+        password: "Test123!",
+      })
+    );
+  });
   return (
     <Box
       bg="gray.700"
@@ -81,7 +92,7 @@ const Login = () => {
           />
         </FormControl>
         <FormControl
-          mb="25px"
+          mb="15px"
           display="flex"
           justifyContent="space-between"
           alignItems="flex-end"
@@ -100,6 +111,18 @@ const Login = () => {
             </Text>
           </NavLink>
         </FormControl>
+        <Text
+          onClick={handleDemo}
+          fontSize="xs"
+          textAlign="center"
+          mb="8px"
+          cursor="pointer"
+          _hover={{
+            color: "teal.400",
+          }}
+        >
+          Try demo
+        </Text>
         <FormControl display="flex" justifyContent="center">
           <Button
             type="submit"
