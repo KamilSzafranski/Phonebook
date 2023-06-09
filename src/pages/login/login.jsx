@@ -56,7 +56,7 @@ const Login = () => {
         password: "Test123!",
       })
     );
-  });
+  }, []);
   return (
     <Box
       bg="gray.700"
