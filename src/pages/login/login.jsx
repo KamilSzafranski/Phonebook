@@ -47,7 +47,7 @@ const Login = () => {
     dispatch(loginThunk(user));
   };
 
-  const handleDemo = useCallback(() => {
+  const handleDemo = () => {
     persistor.pause();
     persistor.purge();
     dispatch(
@@ -56,7 +56,8 @@ const Login = () => {
         password: "Test123!",
       })
     );
-  }, []);
+  };
+
   return (
     <Box
       bg="gray.700"
