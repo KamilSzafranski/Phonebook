@@ -15,7 +15,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "redux/auth/auth.thunk";
 import { selectAuthPending, selectIsLogin } from "redux/selector";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { persistor } from "redux/store";
 
 const Login = () => {
